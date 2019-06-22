@@ -1,0 +1,221 @@
+body{
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#00649f 0,#b6def7 50%,#4c72c2 50%,#015186 100%) no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+.waveHorizontals{
+    width: 100%;
+    height: 20px;
+    position: absolute;
+    top: 47.9%;
+    overflow:hidden;
+
+    z-index:-5;
+}
+.waveHorizontal{
+    width: 200%;
+    height: 100%;
+    display: block;
+    position:absolute;
+    left:0; bottom:0;
+    background-repeat:repeat-x;
+    background-position:left bottom;
+    background-size:350px 100%;
+    transform-origin: 0% 100%;
+
+    /* animation: move linear infinite; */
+    animation-name:move;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+}
+
+#waveHorizontal3{
+    background-image:url(../imagens/wave3.svg);
+    animation-delay: 1s;
+    animation-duration: 3s;
+}
+
+#waveHorizontal2{
+    background-image:url(../imagens/wave2.svg);
+    animation-delay: 2s;
+    animation-duration: 5s;	
+}
+
+#waveHorizontal1{
+    background-image:url(../imagens/wave1.svg);
+    animation-delay: 2s;
+    animation-duration: 12s;	
+}
+
+@keyframes move{
+    0% {		transform: translate(-175px,0px) scale(1,1);}
+    50% {		transform: translate(-87px,0px) scale(1,0.5);}
+    100% {	transform: translate(0px,0px) scale(1,1);}
+}
+
+
+h1{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#container{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    left: 30%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #000;
+    background: linear-gradient(#a2d0ed 44%, #4b71c1 52%,#3367ae 70%);
+    overflow: hidden;
+    opacity: 0.5;
+}
+
+#container:focus-within {
+    opacity: 1;
+}
+
+.login{
+    text-align: center;
+    width: 200px;
+    height: 260px;
+    padding: 30px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login h2{
+    font-size: 24px;
+}
+
+.login input{
+    margin-bottom: 30px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.login input[type="submit"]{
+    width: 100%;
+    background-color: white;
+    border: 2px solid gray;
+    border-radius: 10px;
+}
+
+#container2{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    left: 70%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #000;
+    background: linear-gradient(#a2d0ed 44%, #4b71c1 52%,#3367ae 70%);
+    overflow: hidden;
+    opacity: 0.5;
+}
+
+#container2:focus-within {
+    opacity: 1;
+}
+
+.registro{
+    text-align: center;
+    width: 200px;
+    height: 290px;
+    padding: 30px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.registro h2{
+    font-size: 24px;
+}
+
+.registro input{
+    margin-bottom: 14px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.registro input[type="submit"]{
+    width: 100%;
+    background-color: white;
+    border: 2px solid gray;
+    border-radius: 10px;
+}
+
+.wave-01 {
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    left: -100%;
+    top: 45%;
+    background-color: rgba(0,190,255,0.4);
+    border-radius: 45%;
+    animation: rotate 10s linear infinite;
+    z-index: -1;
+}
+
+
+.wave-02 {
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    left: -100%;
+    top: 55%;
+    background-color: rgba(0,70,110,0.4);
+    border-radius: 43%;
+    animation: rotate 7s linear infinite;
+    z-index: -1;
+}
+
+.wave-03 {
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    left: -100%;
+    top: 60%;
+    background-color: rgba(0,90,110,0.4);
+    border-radius: 40%;
+    animation: rotate 5s linear infinite;
+    z-index: -1;
+}
+
+@keyframes wave{
+    from{
+        background-position: 0px 0px;
+    }
+    to{
+        background-position: 1000px 0px;
+    }
+}
+
+
+@keyframes rotate {
+    100% { transform: rotate(360deg);}
+}
+
+footer{
+    color: white;
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    display: block;
+    bottom: 5px;
+    text-align: center;
+}
