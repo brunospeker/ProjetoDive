@@ -1,9 +1,7 @@
-
 package Controle;
 
 import Modelo.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,11 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 public class LoginUsuario extends HttpServlet {
-
-
-
+    /*Servlet que faz login dos usuarios.
+    Servlet simples, procura o usuario, se achar carrega e manda pra sessão
+    se não da mensagem relatando o erro*/
 @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

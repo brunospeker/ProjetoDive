@@ -10,13 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ControleUsuario extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        /*Post que atualiza os dados do usuario logado.*/
         UsuarioDAO u = new UsuarioDAO();
         Usuario user = new Usuario();
         

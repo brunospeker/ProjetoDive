@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controle;
 
 import Modelo.Reply;
@@ -12,10 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author BRUNO
- */
 public class PostarReply extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,7 +24,6 @@ public class PostarReply extends HttpServlet {
             dao.deleteReply(id);/*joga o id no dao de deletar*/
             response.sendRedirect("home.jsp");/*e manda pra pagina gerenciar novamente*/
         }
-        
     }
     
     @Override

@@ -26,7 +26,6 @@ public class PostarTweet extends HttpServlet {
             dao.deleteTweet(id);/*joga o id no dao de deletar*/
             response.sendRedirect("home.jsp");/*e manda pra pagina gerenciar novamente*/
         }
-        
     }
     
     @Override

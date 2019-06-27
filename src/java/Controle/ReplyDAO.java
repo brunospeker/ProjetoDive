@@ -1,17 +1,11 @@
-
 package Controle;
 
 import Modelo.Reply;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
+import java.util.*;
 
+public class ReplyDAO {
 
-public class ReplyDAO{
-    
     private final Connection bd;
     private final String SQLC = "INSERT INTO replys (idtweet,idusuario,mensagem) VALUES (?,?,?)";
     private final String SQLR = "SELECT * FROM replys WHERE idreply=?";
@@ -19,122 +13,89 @@ public class ReplyDAO{
     private final String SQLD = "DELETE FROM replys WHERE idreply=?";
     private final String SQLALL = "SELECT * FROM replys WHERE idtweet=? ORDER BY idreply DESC";
     private final String SQLDELETEALL = "DELETE FROM replys WHERE idtweet=?";
-    
 
-public ReplyDAO () { //Sempre que chamar algum metodo ele abre conexao com o banco de dados
-    
-         bd = ConexaoBD.abrir();
+    public ReplyDAO() { //Sempre que chamar algum metodo ele abre conexao com o banco de dados
+        bd = ConexaoBD.abrir();
     }
 
-public void checkReply(Reply reply){ //Metodo pra identificar se existe ou não a resposta, se existir ele chama o metodo update, caso não exista chama o metodo para criar.
-    
-        try{
-            PreparedStatement ps = bd.prepareStatement("SELECT id FROM replys WHERE id=?");
-            int id = reply.getIdreply();
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            
-            if(rs.next()) {
-                updateReply(reply);
-            }
-            else {
-                addReply(reply);
-            }
-        }
-        catch(Exception e){
-            System.out.println("Erro ao checar reply: "+e.getMessage());    
-        }
-        }
-    
-    public void addReply(Reply reply){ //Criar a resposta no CRUD
-    
-        try{
+    public void addReply(Reply reply) { //Criar a resposta no CRUD
+
+        try {
             PreparedStatement ps = bd.prepareStatement(SQLC);
             ps.setInt(1, reply.getIdtweet());
             ps.setInt(2, reply.getIdususario());
-            ps.setString(3, reply.getMensagem());          
+            ps.setString(3, reply.getMensagem());
             ps.executeUpdate();
-            
+
             ps.close();
-            ConexaoBD.fechar(bd);  
+            ConexaoBD.fechar(bd);
+        } catch (SQLException sqle) {
+            System.out.println("Erro no addReply: " + sqle.getMessage());
         }
-        
-        catch(SQLException sqle){
-            System.out.println("Erro no addReply: "+sqle.getMessage());
-        }
-        
     }
-        
-    public void updateReply(Reply reply){ //Atualizar a resposta no CRUD
-          
-        try{
+
+    public void updateReply(Reply reply) { //Atualizar a resposta no CRUD
+
+        try {
             PreparedStatement ps = bd.prepareStatement(SQLU);
             ps.setInt(1, reply.getIdtweet());
             ps.setInt(2, reply.getIdususario());
-            ps.setString(3, reply.getMensagem());  
+            ps.setString(3, reply.getMensagem());
             ps.setInt(4, reply.getIdreply());
             ps.executeUpdate();
-            
+
             ps.close();
-            ConexaoBD.fechar(bd);  
+            ConexaoBD.fechar(bd);
+        } catch (SQLException sqle) {
+            System.out.println("Erro no updateTweet: " + sqle.getMessage());
         }
-        
-        catch(SQLException sqle){
-            System.out.println("Erro no updateTweet: "+sqle.getMessage());
-        }
-        
     }
-    
-    public void deleteReply (int id){ //Deletar a resposta no CRUD
-        
-        try{
+
+    public void deleteReply(int id) { //Deletar a resposta no CRUD
+
+        try {
             PreparedStatement ps = bd.prepareStatement(SQLD);
             ps.setInt(1, id);
             ps.executeUpdate();
-            
+
             ps.close();
-            ConexaoBD.fechar(bd);      
+            ConexaoBD.fechar(bd);
+        } catch (SQLException sqle) {
+            System.out.println("Erro no deleteReply: " + sqle.getMessage());
         }
-        
-        catch (SQLException sqle){
-            System.out.println("Erro no deleteReply: "+sqle.getMessage());
-        
-        }
-    
     }
-    
-    public Reply getByIdReply(int id){ //Ler a resposta pela ID no CRUD
+
+    public Reply getByIdReply(int id) { //Ler a resposta pela ID no CRUD
         Reply reply = new Reply();
-        
-        try{
+
+        try {
             PreparedStatement ps = bd.prepareStatement(SQLR);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-            
-            if(rs.next()){
+
+            if (rs.next()) {
                 reply.setIdreply(rs.getInt("idreply"));
                 reply.setMensagem(rs.getString("mensagem"));
                 reply.setIdususario(rs.getInt("idusuario"));
             }
-            
+
             rs.close();
             ps.close();
             ConexaoBD.fechar(bd);
-        }
-        catch(SQLException sqle){
-            System.out.println("Erro no getByIdReply: "+sqle.getMessage());
+        } catch (SQLException sqle) {
+            System.out.println("Erro no getByIdReply: " + sqle.getMessage());
         }
         return reply;
     }
-    
-    public List<Reply> getAllReplys(int tweet){ //Ler todas as respostas no CRUD
+
+    public List<Reply> getAllReplys(int tweet) { //Ler todas as respostas no CRUD
         List<Reply> replys = new ArrayList<Reply>();
-        
-        try{
+
+        try {
             PreparedStatement ps = bd.prepareStatement(SQLALL);
             ps.setInt(1, tweet);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Reply r = new Reply();
                 r.setIdususario(rs.getInt("idusuario"));
                 r.setMensagem(rs.getString("mensagem"));
@@ -144,29 +105,23 @@ public void checkReply(Reply reply){ //Metodo pra identificar se existe ou não 
             rs.close();
             ps.close();
             ConexaoBD.fechar(bd);
-            
-        }
-        catch(SQLException sqle){
-            System.out.println("Erro no getAllReplys: "+sqle.getMessage());
+        } catch (SQLException sqle) {
+            System.out.println("Erro no getAllReplys: " + sqle.getMessage());
         }
         return replys;
     }
-    
-    public void deleteTodosReplysDoTweet (int id){ //Deletar a resposta no CRUD
-        
-        try{
+
+    public void deleteTodosReplysDoTweet(int id) { //Deletar a resposta no CRUD
+
+        try {
             PreparedStatement ps = bd.prepareStatement(SQLDELETEALL);
             ps.setInt(1, id);
             ps.executeUpdate();
-            
+
             ps.close();
-            ConexaoBD.fechar(bd);      
+            ConexaoBD.fechar(bd);
+        } catch (SQLException sqle) {
+            System.out.println("Erro no deleteTodosReplys: " + sqle.getMessage());
         }
-        
-        catch (SQLException sqle){
-            System.out.println("Erro no deleteTodosReplys: "+sqle.getMessage());
-        
-        }
-    
     }
 }
