@@ -9,6 +9,7 @@
     <jsp:useBean id="UsuarioLogado" class="Modelo.Usuario" scope="session">
     </jsp:useBean>
     <body>
+        <!-- Dados do usuario logado -->
         <div class="perfil">
             <a href="home.jsp"><img src="imagens/LogoDive.png" style="position: relative; top: 9px;"></a>
             <img src="<%=UsuarioLogado.getUrlfoto()%>" style="width: 200px; height: 250px;margin-top: 20px;">
@@ -22,7 +23,8 @@
             <button>Sair</button>
             </form>
         </div>
-        
+            
+        <!-- Atualiza o usuario -->
         <div class="options">
             <form action="ControleUsuario" method="POST">
                 <fieldset>
@@ -51,6 +53,5 @@
                 <input type="submit" value="Confirmar modificações">
             </form>
         </div>
-        
     </body>
 </html>
