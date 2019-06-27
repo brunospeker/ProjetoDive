@@ -17,8 +17,8 @@
         <div id="container">
             <form class="login">
                 <h2>Fazer login</h2>
-                <input type="text" placeholder="Usuario">
-                <input type="password" placeholder="Senha">
+                <input type="text" placeholder="Usuario" name="user">
+                <input type="password" placeholder="Senha"  name="pass">
                 <input type="submit" value="Logar">
             </form>
             <div class="wave-01"></div>
@@ -29,9 +29,9 @@
         <div id="container2">
             <form class="registro">
                 <h2>Se cadastre</h2>
-                <input type="text" placeholder="Usuario">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Senha">
+                <input type="text" placeholder="Usuario" name="usuario">
+                <input type="email" placeholder="Email" name="email">
+                <input type="password" placeholder="Senha" name="password">
                 <input type="submit" value="Registrar">
             </form>
             <div class="wave-01"></div>

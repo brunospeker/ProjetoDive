@@ -14,9 +14,9 @@ public class TweetDAO{
     
     private final Connection bd;
     private final String SQLC = "INSERT INTO tweets (idusuario,mensagem) VALUES (?,?)";
-    private final String SQLR = "SELECT * FROM tweets WHERE id=?";
-    private final String SQLU = "UPDATE tweets set idusuario=?, mensagem=? WHERE id=?";
-    private final String SQLD = "DELETE FROM tweets WHERE id=?";
+    private final String SQLR = "SELECT * FROM tweets WHERE idtweet=?";
+    private final String SQLU = "UPDATE tweets set idusuario=?, mensagem=? WHERE idtweet=?";
+    private final String SQLD = "DELETE FROM tweets WHERE idtweet=?";
     private final String SQLALL = "SELECT * FROM tweets";
     
 
@@ -28,7 +28,7 @@ public TweetDAO () { //Sempre que chamar algum metodo ele abre conexao com o ban
 public void checkTweet(Tweet tweet){ //Metodo pra identificar se existe ou não a mensagem, se existir ele chama o metodo update, caso não exista chama o metodo para criar.
     
         try{
-            PreparedStatement ps = bd.prepareStatement("SELECT id FROM tweets WHERE id=?");
+            PreparedStatement ps = bd.prepareStatement("SELECT idtweet FROM tweets WHERE idtweet=?");
             int id = tweet.getIdtweet();
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -49,7 +49,8 @@ public void checkTweet(Tweet tweet){ //Metodo pra identificar se existe ou não 
     
         try{
             PreparedStatement ps = bd.prepareStatement(SQLC);
-            ps.setString(1, tweet.getMensagem());          
+            ps.setInt(1, tweet.getIdusuario());
+            ps.setString(2, tweet.getMensagem());          
             ps.executeUpdate();
             
             ps.close();
@@ -66,9 +67,9 @@ public void checkTweet(Tweet tweet){ //Metodo pra identificar se existe ou não 
           
         try{
             PreparedStatement ps = bd.prepareStatement(SQLU);
-            ps.setString(1, tweet.getMensagem());
-            ps.setInt(2, tweet.getIdtweet());  
-            ps.setInt(3, tweet.getIdusuario());
+            ps.setInt(1, tweet.getIdusuario());
+            ps.setString(2, tweet.getMensagem());
+            ps.setInt(3, tweet.getIdtweet());
             ps.executeUpdate();
             
             ps.close();
@@ -108,7 +109,7 @@ public void checkTweet(Tweet tweet){ //Metodo pra identificar se existe ou não 
             ResultSet rs = ps.executeQuery();
             
             if(rs.next()){
-                tweet.setIdtweet(rs.getInt("id"));
+                tweet.setIdtweet(rs.getInt("idtweet"));
                 tweet.setMensagem(rs.getString("mensagem"));
                 tweet.setIdusuario(rs.getInt("idusuario"));
             }
@@ -133,7 +134,7 @@ public void checkTweet(Tweet tweet){ //Metodo pra identificar se existe ou não 
                 Tweet t = new Tweet();
                 t.setIdusuario(rs.getInt("idusuario"));
                 t.setMensagem(rs.getString("mensagem"));
-                t.setIdtweet(rs.getInt("id"));
+                t.setIdtweet(rs.getInt("idtweet"));
                 tweets.add(t);
             }
             rs.close();

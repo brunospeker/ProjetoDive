@@ -14,9 +14,9 @@ public class ReplyDAO{
     
     private final Connection bd;
     private final String SQLC = "INSERT INTO replys (idtweet,idusuario,mensagem) VALUES (?,?,?)";
-    private final String SQLR = "SELECT * FROM replys WHERE id=?";
-    private final String SQLU = "UPDATE replys set idtweet=?, idusuario=?, mensagem=? WHERE id=?";
-    private final String SQLD = "DELETE FROM replys WHERE id=?";
+    private final String SQLR = "SELECT * FROM replys WHERE idreply=?";
+    private final String SQLU = "UPDATE replys set idtweet=?, idusuario=?, mensagem=? WHERE idreply=?";
+    private final String SQLD = "DELETE FROM replys WHERE idreply=?";
     private final String SQLALL = "SELECT * FROM replys";
     
 
@@ -111,7 +111,7 @@ public void checkReply(Reply reply){ //Metodo pra identificar se existe ou não 
             ResultSet rs = ps.executeQuery();
             
             if(rs.next()){
-                reply.setIdreply(rs.getInt("id"));
+                reply.setIdreply(rs.getInt("idreply"));
                 reply.setMensagem(rs.getString("mensagem"));
                 reply.setIdususario(rs.getInt("idusuario"));
             }
@@ -136,7 +136,7 @@ public void checkReply(Reply reply){ //Metodo pra identificar se existe ou não 
                 Reply r = new Reply();
                 r.setIdususario(rs.getInt("idusuario"));
                 r.setMensagem(rs.getString("mensagem"));
-                r.setIdreply(rs.getInt("id"));
+                r.setIdreply(rs.getInt("idreply"));
                 replys.add(r);
             }
             rs.close();

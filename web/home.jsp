@@ -1,3 +1,7 @@
+<%@page import="Controle.UsuarioDAO"%>
+<%@page import="java.util.*"%>
+<%@page import="Modelo.Tweet"%>
+<%@page import="Controle.TweetDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,11 +35,20 @@
         </div>
         
         
-        <% for(int i=0; i<4; i++){ %>
+        <%
+            TweetDAO tdao = new TweetDAO();
+            UsuarioDAO udao = new UsuarioDAO();
+            List<Tweet> tweet = tdao.getAllTweets();
+            Iterator itweet = tweet.iterator();
+            while(itweet.hasNext()){
+                Tweet t = (Tweet) itweet.next();
+        %>
         <div class="comentario">
-            <img src="" style="height: 100px; width: 75px; float: left; margin: 15px;">
-            <h3>Nome do Usuario</h3><h4>@usuario</h4>
-            <textarea maxlength="240" placeholder="Digite sua mensagem aqui." size="240" style="resize: none; border: none; background: none;" disabled></textarea>
+            <img src="<%%>" style="height: 100px; width: 75px; float: left; margin: 15px;">
+            <h3><%=t.getIdusuario() %></h3><h4>@<%=t.getIdusuario()%></h4>
+            <textarea maxlength="240" placeholder="<%=t.getMensagem()%>" size="240" style="resize: none; border: none; background: none;" disabled></textarea>
+            <img src="" style="height: 20px; width: 20px;">
+            <img src="" style="height: 20px; width: 20px;">
             <img src="" style="height: 20px; width: 20px;">
         </div>
         
@@ -51,7 +64,7 @@
             <div class="resposta">
                 <form action="PostarReply" method="POST">
                     <textarea maxlength="240" placeholder="Digite sua mensagem aqui." name="reply" size="240" required></textarea>
-                    <input type="hidden" name="idtweet" value="">
+                    <input type="hidden" name="idtweet" value="<%=t.getIdtweet()%>">
                     <input type="hidden" name="log" value="<%UsuarioLogado.getIdusuario();%>">
                     <input type="submit" value="Enviar">
                 </form>
