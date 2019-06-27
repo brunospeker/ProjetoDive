@@ -19,10 +19,11 @@
             <h2>@usuario</h2>
             <h2>Email:</h2>
             
-            <button>Inicio</button>
-            <button>Configurações</button>
+            <button onclick="location.href='home.jsp'">Inicio</button>
+            <button onclick="location.href='settings.jsp'">Configurações</button>
+            <form>
             <button>Sair</button>
-            
+            </form>
         </div>
         
         <div class="mensagem">
