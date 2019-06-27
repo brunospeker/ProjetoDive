@@ -12,6 +12,8 @@
         <title>Configurações de Perfil - Dive</title>
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
+    <jsp:useBean id="UsuarioLogado" class="Modelo.Usuario" scope="session">
+    </jsp:useBean>
     <body>
         <div class="perfil">
             <img src="" style="width: 200px; height: 250px;margin-top: 20px;">
@@ -19,9 +21,11 @@
             <h2>@usuario</h2>
             <h2>Email:</h2>
             
-            <button>Inicio</button>
-            <button>Configurações</button>
+            <button onclick="location.href='home.jsp'">Inicio</button>
+            <button onclick="location.href='settings.jsp'">Configurações</button>
+            <form>
             <button>Sair</button>
+            </form>
             
         </div>
         
