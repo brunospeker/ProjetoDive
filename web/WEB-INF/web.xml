@@ -8,6 +8,18 @@
         <servlet-name>PostarReply</servlet-name>
         <servlet-class>Controle.PostarReply</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginUsuario</servlet-name>
+        <servlet-class>Controle.LoginUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistroUsuario</servlet-name>
+        <servlet-class>Controle.RegistroUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutUsuario</servlet-name>
+        <servlet-class>Controle.LogoutUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PostarTweet</servlet-name>
         <url-pattern>/PostarTweet</url-pattern>
@@ -15,6 +27,18 @@
     <servlet-mapping>
         <servlet-name>PostarReply</servlet-name>
         <url-pattern>/PostarReply</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginUsuario</servlet-name>
+        <url-pattern>/LoginUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistroUsuario</servlet-name>
+        <url-pattern>/RegistroUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutUsuario</servlet-name>
+        <url-pattern>/LogoutUsuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

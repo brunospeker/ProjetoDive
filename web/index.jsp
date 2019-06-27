@@ -15,7 +15,7 @@
     <body>
         <h1>Bem vindo(a)!</h1>
         <div id="container">
-            <form class="login">
+            <form class="login" action="LoginUsuario" method="POST">
                 <h2>Fazer login</h2>
                 <input type="text" placeholder="Usuario" name="user">
                 <input type="password" placeholder="Senha"  name="pass">
