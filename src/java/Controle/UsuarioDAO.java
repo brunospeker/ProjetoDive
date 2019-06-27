@@ -10,9 +10,9 @@ public class UsuarioDAO {
     
     private final Connection bd;
     private final String SQLC = "INSERT INTO usuarios (usuario,senha,email,urlfoto,admin) VALUES (?,?,?,?,?)";
-    private final String SQLR = "SELECT * FROM usuarios WHERE id=?";
-    private final String SQLU = "UPDATE usuarios set usuario=?, senha=?, email=?, urlfoto=?, admin=? WHERE id=?";
-    private final String SQLD = "DELETE FROM usuarios WHERE id=?";
+    private final String SQLR = "SELECT * FROM usuarios WHERE idusuario=?";
+    private final String SQLU = "UPDATE usuarios set usuario=?, senha=?, email=?, urlfoto=?, admin=? WHERE idusuario=?";
+    private final String SQLD = "DELETE FROM usuarios WHERE idusuario=?";
     private final String SQLALL = "SELECT * FROM usuarios";
     
     public UsuarioDAO () { //Sempre que chamar algum metodo ele abre conexao com o banco de dados
@@ -110,7 +110,7 @@ public class UsuarioDAO {
             ResultSet rs = ps.executeQuery();
             
             if(rs.next()){
-                user.setIdusuario(rs.getInt("id"));
+                user.setIdusuario(rs.getInt("idusuario"));
                 user.setUsuario(rs.getString("usuario"));
                 user.setEmail(rs.getString("email"));
                 user.setSenha(rs.getString("senha"));
@@ -136,7 +136,7 @@ public class UsuarioDAO {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Usuario u = new Usuario();
-                u.setIdusuario(rs.getInt("id"));
+                u.setIdusuario(rs.getInt("idusuario"));
                 u.setUsuario(rs.getString("usuario"));
                 u.setEmail(rs.getString("email"));
                 u.setSenha(rs.getString("senha"));

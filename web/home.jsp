@@ -1,3 +1,4 @@
+<%@page import="Modelo.Usuario"%>
 <%@page import="Controle.UsuarioDAO"%>
 <%@page import="java.util.*"%>
 <%@page import="Modelo.Tweet"%>
@@ -37,15 +38,16 @@
         
         <%
             TweetDAO tdao = new TweetDAO();
-            UsuarioDAO udao = new UsuarioDAO();
             List<Tweet> tweet = tdao.getAllTweets();
             Iterator itweet = tweet.iterator();
             while(itweet.hasNext()){
                 Tweet t = (Tweet) itweet.next();
+                UsuarioDAO udao = new UsuarioDAO();
+                Usuario u = udao.getByIdUsuario(t.getIdusuario());
         %>
         <div class="comentario">
             <img src="<%%>" style="height: 100px; width: 75px; float: left; margin: 15px;">
-            <h3><%=t.getIdusuario() %></h3><h4>@<%=t.getIdusuario()%></h4>
+            <h3><%=u.getUsuario()%></h3><h4>@<%=u.getUsuario()%></h4>
             <textarea maxlength="240" placeholder="<%=t.getMensagem()%>" size="240" style="resize: none; border: none; background: none;" disabled></textarea>
             <img src="" style="height: 20px; width: 20px;">
             <img src="" style="height: 20px; width: 20px;">
