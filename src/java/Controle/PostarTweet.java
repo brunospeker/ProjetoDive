@@ -21,11 +21,10 @@ public class PostarTweet extends HttpServlet {
         
         if(action.equalsIgnoreCase("delete")){/*se a action for delete*/
             int id = Integer.parseInt(request.getParameter("id"));/*ele pega o id*/
+            ReplyDAO rdao = new ReplyDAO();
+            rdao.deleteTodosReplysDoTweet(id);
             dao.deleteTweet(id);/*joga o id no dao de deletar*/
             response.sendRedirect("home.jsp");/*e manda pra pagina gerenciar novamente*/
-        }
-        else if(action.equalsIgnoreCase("update")){
-            
         }
         
     }

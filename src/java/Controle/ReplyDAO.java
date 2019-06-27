@@ -17,7 +17,8 @@ public class ReplyDAO{
     private final String SQLR = "SELECT * FROM replys WHERE idreply=?";
     private final String SQLU = "UPDATE replys set idtweet=?, idusuario=?, mensagem=? WHERE idreply=?";
     private final String SQLD = "DELETE FROM replys WHERE idreply=?";
-    private final String SQLALL = "SELECT * FROM replys";
+    private final String SQLALL = "SELECT * FROM replys WHERE idtweet=? ORDER BY idreply DESC";
+    private final String SQLDELETEALL = "DELETE FROM replys WHERE idtweet=?";
     
 
 public ReplyDAO () { //Sempre que chamar algum metodo ele abre conexao com o banco de dados
@@ -126,11 +127,12 @@ public void checkReply(Reply reply){ //Metodo pra identificar se existe ou não 
         return reply;
     }
     
-    public List<Reply> getAllReplys(){ //Ler todas as respostas no CRUD
+    public List<Reply> getAllReplys(int tweet){ //Ler todas as respostas no CRUD
         List<Reply> replys = new ArrayList<Reply>();
         
         try{
             PreparedStatement ps = bd.prepareStatement(SQLALL);
+            ps.setInt(1, tweet);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Reply r = new Reply();
@@ -149,5 +151,22 @@ public void checkReply(Reply reply){ //Metodo pra identificar se existe ou não 
         }
         return replys;
     }
-}
+    
+    public void deleteTodosReplysDoTweet (int id){ //Deletar a resposta no CRUD
         
+        try{
+            PreparedStatement ps = bd.prepareStatement(SQLDELETEALL);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            
+            ps.close();
+            ConexaoBD.fechar(bd);      
+        }
+        
+        catch (SQLException sqle){
+            System.out.println("Erro no deleteTodosReplys: "+sqle.getMessage());
+        
+        }
+    
+    }
+}

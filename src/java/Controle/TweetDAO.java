@@ -17,7 +17,7 @@ public class TweetDAO{
     private final String SQLR = "SELECT * FROM tweets WHERE idtweet=?";
     private final String SQLU = "UPDATE tweets set idusuario=?, mensagem=? WHERE idtweet=?";
     private final String SQLD = "DELETE FROM tweets WHERE idtweet=?";
-    private final String SQLALL = "SELECT * FROM tweets";
+    private final String SQLALL = "SELECT * FROM tweets ORDER BY idtweet DESC";
     
 
 public TweetDAO () { //Sempre que chamar algum metodo ele abre conexao com o banco de dados

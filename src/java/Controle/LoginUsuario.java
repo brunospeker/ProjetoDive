@@ -33,6 +33,7 @@ public class LoginUsuario extends HttpServlet {
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 log.setIdusuario(rs.getInt("idusuario"));
+                log.setNome(rs.getString("nome"));
                 log.setUsuario(rs.getString("usuario"));
                 log.setEmail(rs.getString("email"));
                 log.setSenha(rs.getString("senha"));

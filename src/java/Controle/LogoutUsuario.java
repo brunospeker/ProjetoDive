@@ -21,7 +21,7 @@ public class LogoutUsuario extends HttpServlet {
         session.invalidate();
         System.out.println("Sessao Encerrada!");
         
-        request.setAttribute("notificacao", "Até logo :)");
+        request.setAttribute("notificacao", "Obrigado por Twettar<br>Volte sempre!");
         request.getRequestDispatcher("aviso.jsp").forward(request, response);
     }
 }

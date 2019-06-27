@@ -65,6 +65,13 @@ h1{
     transform: translate(-50%, -50%);
 }
 
+.logo{
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 #container{
     width: 300px;
     height: 300px;
@@ -208,6 +215,30 @@ h1{
 
 @keyframes rotate {
     100% { transform: rotate(360deg);}
+}
+
+#container3{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #000;
+    background: linear-gradient(#a2d0ed 44%, #4b71c1 52%,#3367ae 70%);
+    overflow: hidden;
+}
+
+#container3 h2{
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    transform: translate(-50%,-50%);
+    color: white;
+    width: 78%;
+    height: 50%;
+    text-align: center;
 }
 
 footer{

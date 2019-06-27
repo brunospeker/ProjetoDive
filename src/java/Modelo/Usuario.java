@@ -2,6 +2,7 @@ package Modelo;
 /*Criação da classe padrão, com get e sets e booleano para validação de login*/
 public class Usuario {
     private int idusuario;
+    private String nome;
     private String usuario;
     private String email;
     private String senha;
@@ -12,13 +13,22 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int idusuario, String usuario, String email, String senha, String urlfoto, int admin) {
+    public Usuario(int idusuario, String nome, String usuario, String email, String senha, String urlfoto, int admin) {
         this.idusuario = idusuario;
+        this.nome = nome;
         this.usuario = usuario;
         this.email = email;
         this.senha = senha;
         this.urlfoto = urlfoto;
         this.admin = admin;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public int getIdusuario() {

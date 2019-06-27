@@ -20,6 +20,10 @@
         <servlet-name>LogoutUsuario</servlet-name>
         <servlet-class>Controle.LogoutUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControleUsuario</servlet-name>
+        <servlet-class>Controle.ControleUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PostarTweet</servlet-name>
         <url-pattern>/PostarTweet</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>LogoutUsuario</servlet-name>
         <url-pattern>/LogoutUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControleUsuario</servlet-name>
+        <url-pattern>/ControleUsuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

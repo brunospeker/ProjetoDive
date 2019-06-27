@@ -1,19 +1,14 @@
-<%-- 
-    Document   : index
-    Created on : 15/06/2019, 21:12:29
-    Author     : BRUNO
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Dive</title>
-        <link rel="stylesheet" type="text/css" href="css/mainn.css">
+        <link rel="stylesheet" type="text/css" href="css/mainstyle.css">
     </head>
     <body>
         <h1>Bem vindo(a)!</h1>
+        <a href="index.jsp"><img class="logo" src="imagens/LogoDive.png"></a>
         <div id="container">
             <form class="login" action="LoginUsuario" method="POST">
                 <h2>Fazer login</h2>
@@ -27,11 +22,11 @@
         </div>
         
         <div id="container2">
-            <form class="registro">
+            <form class="registro" action="RegistroUsuario" method="POST">
                 <h2>Se cadastre</h2>
-                <input type="text" placeholder="Usuario" name="usuario">
-                <input type="email" placeholder="Email" name="email">
-                <input type="password" placeholder="Senha" name="password">
+                <input type="text" placeholder="Usuario" name="usuario" required>
+                <input type="email" placeholder="Email" name="email" required>
+                <input type="password" placeholder="Senha" name="password" required>
                 <input type="submit" value="Registrar">
             </form>
             <div class="wave-01"></div>

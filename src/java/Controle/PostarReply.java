@@ -33,9 +33,6 @@ public class PostarReply extends HttpServlet {
             dao.deleteReply(id);/*joga o id no dao de deletar*/
             response.sendRedirect("home.jsp");/*e manda pra pagina gerenciar novamente*/
         }
-        else if(action.equalsIgnoreCase("update")){
-            
-        }
         
     }
     
@@ -43,8 +40,8 @@ public class PostarReply extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String reply = request.getParameter("reply");
-        int idtweet = Integer.parseInt("idtweet");
-        int idusuario = Integer.parseInt(request.getParameter("logado"));
+        int idtweet = Integer.parseInt(request.getParameter("idtweet"));
+        int idusuario = Integer.parseInt(request.getParameter("log"));
         
         ReplyDAO replydao = new ReplyDAO();
         Reply r = new Reply();

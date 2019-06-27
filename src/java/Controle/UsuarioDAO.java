@@ -9,9 +9,9 @@ import java.util.*;
 public class UsuarioDAO {
     
     private final Connection bd;
-    private final String SQLC = "INSERT INTO usuarios (usuario,senha,email,urlfoto,admin) VALUES (?,?,?,?,?)";
+    private final String SQLC = "INSERT INTO usuarios (nome,usuario,senha,email,urlfoto,admin) VALUES (?,?,?,?,?,?)";
     private final String SQLR = "SELECT * FROM usuarios WHERE idusuario=?";
-    private final String SQLU = "UPDATE usuarios set usuario=?, senha=?, email=?, urlfoto=?, admin=? WHERE idusuario=?";
+    private final String SQLU = "UPDATE usuarios set nome=?, usuario=?, senha=?, email=?, urlfoto=?, admin=? WHERE idusuario=?";
     private final String SQLD = "DELETE FROM usuarios WHERE idusuario=?";
     private final String SQLALL = "SELECT * FROM usuarios";
     
@@ -44,11 +44,12 @@ public class UsuarioDAO {
     
         try{
             PreparedStatement ps = bd.prepareStatement(SQLC);
-            ps.setString(1, user.getUsuario());
-            ps.setString(2, user.getSenha());            
-            ps.setString(3, user.getEmail());
-            ps.setString(4, user.getUrlfoto());
-            ps.setInt(5, user.getAdmin());  
+            ps.setString(1, user.getNome());
+            ps.setString(2, user.getUsuario());
+            ps.setString(3, user.getSenha());            
+            ps.setString(4, user.getEmail());
+            ps.setString(5, user.getUrlfoto());
+            ps.setInt(6, user.getAdmin());  
             ps.executeUpdate();
             
             ps.close();
@@ -65,12 +66,13 @@ public class UsuarioDAO {
           
         try{
             PreparedStatement ps = bd.prepareStatement(SQLU);
-            ps.setString(1, user.getUsuario());
-            ps.setString(2, user.getSenha());            
-            ps.setString(3, user.getEmail());
-            ps.setString(4, user.getUrlfoto());
-            ps.setInt(5, user.getAdmin());  
-            ps.setInt(6, user.getIdusuario());
+            ps.setString(1, user.getNome());
+            ps.setString(2, user.getUsuario());
+            ps.setString(3, user.getSenha());            
+            ps.setString(4, user.getEmail());
+            ps.setString(5, user.getUrlfoto());
+            ps.setInt(6, user.getAdmin());  
+            ps.setInt(7, user.getIdusuario());
             ps.executeUpdate();
             
             ps.close();
@@ -111,6 +113,7 @@ public class UsuarioDAO {
             
             if(rs.next()){
                 user.setIdusuario(rs.getInt("idusuario"));
+                user.setNome(rs.getString("nome"));
                 user.setUsuario(rs.getString("usuario"));
                 user.setEmail(rs.getString("email"));
                 user.setSenha(rs.getString("senha"));
@@ -137,6 +140,7 @@ public class UsuarioDAO {
             while(rs.next()){
                 Usuario u = new Usuario();
                 u.setIdusuario(rs.getInt("idusuario"));
+                u.setNome(rs.getString("nome"));
                 u.setUsuario(rs.getString("usuario"));
                 u.setEmail(rs.getString("email"));
                 u.setSenha(rs.getString("senha"));
@@ -154,6 +158,4 @@ public class UsuarioDAO {
         }
         return users;
     }
-        
-    
-    }
+}
